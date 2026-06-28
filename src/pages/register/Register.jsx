@@ -31,12 +31,12 @@ export default function Register() {
   }
 
   return (
-    <Box onSubmit={handleSubmit(RegisterForm)} component='section' className='registerPage'>
+    <Box component='section' className='registerPage'>
       <Typography component='h1' variant='h2'> Register</Typography>
 
 
 
-      <Box component='form' sx={{ marginTop: 2, display: 'flex', flexDirection: 'column', gap: 2 }}>
+      <Box component='form' onSubmit={handleSubmit(RegisterForm)}  sx={{ marginTop: 2, display: 'flex', flexDirection: 'column', gap: 2 }}>
         <TextField fullWidth {...register("userName")} label="UserName" variant="outlined"
           error={errors.userName}
           helperText={errors.userName?.message}
@@ -52,7 +52,7 @@ export default function Register() {
         <TextField fullWidth {...register("password")} label="Password" variant="outlined" error={errors.password}
           helperText={errors.password?.message} />
 
-        {setServerErrors?.length > 0 ? serverErrors.map((error) =>
+        {serverErrors?.length > 0 ? serverErrors.map((error) =>
           <Typography color='error' component='div' sx={{ marginLeft: 3 }}>{error}</Typography>
         ) : ''}
 
