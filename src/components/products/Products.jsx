@@ -1,6 +1,7 @@
 import React from 'react'
 import useProducts from '../../hooks/useProducts';
 import { Box, Card, CardContent, CardMedia, CircularProgress, Grid, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 export default function Products() {
 
 
@@ -15,7 +16,9 @@ export default function Products() {
         <Typography component='h1'>Products</Typography>
             <Grid container spacing={{xs:2 , md:3}} sx={{textAlign:'center'}}>
         {data.response.data.map((product) => 
+                 
                     <Grid item size={{xs:12 ,sm:6 , md:4}}> 
+                     <Link to={`/product/${product.id}`}  style={{ textDecoration: "none"}}>
                           <Card>
                         <CardMedia component='img'  image={product.image} sx={{width:200 , mb:5}}>
                             
@@ -26,7 +29,9 @@ export default function Products() {
                            
                         </CardContent>
                       </Card>
+                    </Link>
                     </Grid>
+                 
         )}
         </Grid>
     </Box>
