@@ -5,16 +5,15 @@ import axiosInstance from '../api/axiosInstance';
 import authAxiosInstance from '../api/authAxiosInstance';
 
 export default function useCart() {
-     const token = localStorage.getItem('accessToken');
+    
   const getItems = async ()=>{
-    const response = await authAxiosInstance.get(`/Carts` )
-      console.log(response.data);
+    const response = await authAxiosInstance.get('/Carts' )
    return response.data;
   }
 
     
     const query = useQuery({
-        queryKey : ["Cart"],
+        queryKey : ['cart' , 'en'],
         queryFn : getItems,
         staleTime:1000*60*5
     });
