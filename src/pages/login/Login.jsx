@@ -6,11 +6,12 @@ import axios from 'axios';
 import { yupResolver } from "@hookform/resolvers/yup"
 import { loginSchema } from '../../validations/LoginSchema';
 import { useAuthStore } from '../../store/useAuthStore';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Login() {
 
-
+   const navigate = useNavigate();
   const [serverErrors, setServerErrors] = useState([]);
 
 const setToken = useAuthStore((state)=> state.setToken);
@@ -27,6 +28,7 @@ const setToken = useAuthStore((state)=> state.setToken);
       const response = await axios.post(`${import.meta.env.VITE_BURL}/auth/Account/Login`, data);
         
       setToken(response.data.accessToken);
+      navigate('/')
   
     } catch (err) {
       setServerErrors(err.response.data.errors);
