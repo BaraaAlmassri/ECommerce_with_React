@@ -8,10 +8,11 @@ import { useAuthStore } from '../../store/useAuthStore';
 import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import useRemoveFromCart from '../../hooks/useRemoveFromCart';
 
 export default function Cart() {
      
- 
+  const {mutate:removeItem,isPending} = useRemoveFromCart();
 
   const {data , isLoading , isError , error} = useCart();
 
@@ -43,6 +44,7 @@ export default function Cart() {
                     <TableCell>{item.price}$</TableCell>
                     <TableCell>{item.count}</TableCell>
                     <TableCell>{item.totalPrice}$</TableCell>
+                    <TableCell><Button color='error' onClick={()=> removeItem(item.productId)} disabled={isPending}>Delete</Button></TableCell>
                   </TableRow>
             )}
             <TableRow>
