@@ -1,9 +1,11 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../../store/useAuthStore';
+import useCart from '../../hooks/useCart';
 export default function Navbar() {
 
-
+ const {data} = useCart();
+ const cartCount = data?.items.length || 0 ; 
   const navigate = useNavigate();
 
     const token = useAuthStore((state)=>state.token);
@@ -20,7 +22,7 @@ export default function Navbar() {
         
         <Link to="/products">Products</Link>
         {token? <>
-        <Link to="/cart">Cart</Link>
+        <Link to="/cart">Cart {cartCount}</Link>
         <Link to="/login" component="button" onClick={handlelogout}>Logout</Link>
         </>  :
         <>
