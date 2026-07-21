@@ -7,6 +7,10 @@ import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import ProductDetails from "./pages/products/ProductDetails";
 import ProtectedRouter from "./ProtectedRouter";
+import Checkout from "./pages/register/checkout/Checkout";
+import ProfileLayout from "./pages/profile/ProfileLayout";
+import ProfileInfo from "./pages/profile/ProfileInfo";
+import ProfileOrders from "./pages/profile/ProfileOrders";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +35,25 @@ const router = createBrowserRouter([
         {
             path:'cart',
             element:<ProtectedRouter><Cart></Cart></ProtectedRouter>
+        },
+        {
+            path:'checkout',
+            element:<ProtectedRouter><Checkout></Checkout></ProtectedRouter>
+        },
+        {
+            path:'profile',
+            element:<ProtectedRouter><ProfileLayout></ProfileLayout></ProtectedRouter>,
+            children:[
+                {
+                    index:true,
+                    element:<ProfileInfo></ProfileInfo>
+                },
+                {
+                    path:'orders',
+                    element:<ProfileOrders></ProfileOrders>
+
+                }
+            ]
         },
 
         {

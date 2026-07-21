@@ -20,7 +20,8 @@ i18n
           "Products": "Products",
           "Cart":"Cart",
           "Categories" :"Categories",
-          "Logout" : "Logout"
+          "Logout" : "Logout",
+          "Profile":"Profile"
         }
       },
        ar: {
@@ -31,7 +32,8 @@ i18n
           "Products": "المنتجات",
           "Cart":"عربة التسوق",
           "Categories" :"التصنيفات",
-          "Logout" : "تسجيل خروج"
+          "Logout" : "تسجيل خروج",
+          "Profile":"الصفحة الشخصية"
         }
       }
     },

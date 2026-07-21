@@ -13,9 +13,13 @@ import { Box, IconButton, Table, TableBody, TableCell, TableContainer, TableHead
 import useRemoveFromCart from '../../hooks/useRemoveFromCart';
 import useUpdateCartQty from '../../hooks/useUpdateCartQty';
 import useClearCart from '../../hooks/useClearCart';
+import { useNavigate } from 'react-router-dom';
 
 export default function Cart() {
      
+
+ const navigate = useNavigate();
+
   const {mutate:removeItem,isPending} = useRemoveFromCart();
   const {mutate:updateQty,isPending:updateQtyPending} = useUpdateCartQty();
   const {mutate:clearCart , isPending:clearPending}= useClearCart();
@@ -86,6 +90,11 @@ export default function Cart() {
           </TableBody>
         </Table>
       </TableContainer>
+
+      <Box>
+        <Button variant='contained' onClick={()=> navigate('/checkout')}>Process to Checkout</Button>
+        <Button variant='contained' onClick={()=> navigate ('/')}>Continue Shopping</Button>
+      </Box>
    </Box>
   )
 }
