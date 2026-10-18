@@ -4,11 +4,15 @@ import { useForm } from 'react-hook-form'
 
 export default function Register() {
 
-        const{register , handleSubmit , formState: { errors }} = useForm();
+        const{register , handleSubmit , formState: { errors }} = useForm({
+    resolver: yupResolver(schema), mode:'onBlur'
+  })
 
 
         const onSubmit = (values)=>{
             console.log(values);
+
+
         }
 
 
