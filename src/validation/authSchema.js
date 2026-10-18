@@ -28,11 +28,12 @@ export const codeSchema = yup.object({
 
 export const resetSchema = yup.object({
       code:yup.string().required("Code is required check your email please").min(4,"The code must have 4 digits at least"),
-      email:yup.string().required("Email is Required").email("Invalid Email Format"),
-        password:yup.string().required("Password is Required").min(6,"Password must have at least 6 chars")
+       newPassword:yup.string().required("Password is Required").min(6,"Password must have at least 6 chars")
         .matches(/[A-Z]/ , "Password must contains uppercase letter")
         .matches(/[a-z]/ , "Password must contains lowercase letter")
         .matches(/[0-9]/ , "Password must contains number")
-        .matches(/[!@#$%^&*(),.?":{}|<>_\-+=]/, "Password must contain a special character")
+        .matches(/[!@#$%^&*(),.?":{}|<>_\-+=]/, "Password must contain a special character"),
+      email:yup.string().required("Email is Required").email("Invalid Email Format"),
+       
 
 })

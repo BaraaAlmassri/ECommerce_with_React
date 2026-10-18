@@ -26,7 +26,7 @@ export default function Resetpassword() {
                 navigate('/login');
             }catch(err){
                 console.log(err.response);
-                setServerError("Invalid Email");
+                setServerError("Failed to ResetPassword");
             }
 
 
