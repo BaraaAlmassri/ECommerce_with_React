@@ -2,12 +2,13 @@ import { Box, Button, Container, TextField, Typography } from '@mui/material'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup"
+import { registerSchema } from '../../validation/authSchema'
 
 
 export default function Register() {
 
         const{register , handleSubmit , formState: { errors }} = useForm({
-    resolver: yupResolver(schema), mode:'onBlur'
+    resolver: yupResolver(registerSchema), mode:'onBlur'
   })
 
 
