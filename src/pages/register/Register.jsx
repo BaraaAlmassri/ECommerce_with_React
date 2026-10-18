@@ -1,6 +1,8 @@
 import { Box, Button, Container, TextField, Typography } from '@mui/material'
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import { yupResolver } from "@hookform/resolvers/yup"
+
 
 export default function Register() {
 
