@@ -4,14 +4,16 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup"
 import { registerSchema } from '../../validation/authSchema'
 import axios from 'axios'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 export default function Register() {
 
     const [serverError , setServerError] = useState(null);
     const [success , setSuccess] = useState(false);
+    const navigate = useNavigate();
 
-        const{register , handleSubmit , formState: { errors }} = useForm({
+        const{register , handleSubmit , formState: { errors,isSubmitting }} = useForm({
     resolver: yupResolver(registerSchema), mode:'onBlur'
   })
 
@@ -21,6 +23,7 @@ export default function Register() {
             try {
                 const response = await axios.post("https://knowledgeshop.runasp.net/api/auth/Account/Register",values)
                 setSuccess(true);
+                navigate('/login');
             }catch(err){
                 console.log(err.response);
                 setServerError("Registration Failed");
@@ -61,7 +64,14 @@ export default function Register() {
 
                     </TextField>
                    
-                        <Button type='submit' variant='contained' fullWidth sx={{mt:2}}>Register</Button>
+                          <Button type='submit' variant='contained' fullWidth sx={{ mt: 2 }}
+                        
+                                          disabled={isSubmitting}
+                        
+                                       >{isSubmitting ? "Loading...." : "Register"}</Button>
+                                       <Typography variant='body2' sx={{ mt: 2, textAlign: 'center' }}>Already have an account?
+                                          <Link to='/login'>Login</Link>
+                                       </Typography>
                 </Box>
             </Box>
     </Container>
