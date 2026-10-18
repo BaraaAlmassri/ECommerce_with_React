@@ -1,4 +1,4 @@
-import { Box, Button, Container, TextField, Typography } from '@mui/material'
+import { Alert, Box, Button, Container, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -56,7 +56,7 @@ export default function Login() {
                         
                                        >{isSubmitting? "Loading..." : "Login"}</Button>
                                        <Box sx={{display:'flex' , justifyContent:'space-between' , mt:2}}>
-                                          <Link to='/resetpassword'>Forgot your password?</Link>
+                                          <Link to='/code'>Forgot your password?</Link>
                                           <Link to='/register'>Don't have an account?</Link>
                                        </Box>
                 </Box>
