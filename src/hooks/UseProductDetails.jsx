@@ -11,7 +11,7 @@ export default function UseProductDetails(id) {
             }
         })
             
-        return response.data.response.data;
+        return response.data.response;
     }
  return useQuery({
     queryKey:["product" , id],
