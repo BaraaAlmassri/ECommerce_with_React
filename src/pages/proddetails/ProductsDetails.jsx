@@ -2,6 +2,7 @@ import React from 'react'
 import UseProductDetails from '../../hooks/UseProductDetails'
 import { useParams } from 'react-router-dom'
 import { Alert, Box, Button, Card, CardContent, CardMedia, Chip, CircularProgress, Divider, Rating, Typography } from '@mui/material';
+import ReviewItem from './ReviewItem';
 
 export default function ProductsDetails() {
 
@@ -56,6 +57,10 @@ export default function ProductsDetails() {
                
         </Box>
          <Divider sx={{mt:3 , borderBottomWidth:3 }}></Divider>
+
+         {data.reviews.map((review)=>
+            <ReviewItem review={review} />
+         )}
          </>
     )
 }
