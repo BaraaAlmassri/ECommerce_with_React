@@ -11,8 +11,12 @@ export default function Categories() {
 
   return (
     <Box>
-         <Typography variant='h4' component={'h2'}>Categories</Typography> 
-         <Box sx={{display:'flex' , flexWrap:'wrap' , gap:1}}>
+         <Typography variant='h5' component={'h2'} sx={{mb:4}}>Categories</Typography> 
+         <Box sx={{display:'grid' , gap:2 , gridTemplateColumns:{
+          xs:'repeat(2,1fr)',
+          sm:'repeat(3,1fr)',
+          md:'repeat(4,1fr)'
+         }}}>
              {data.map((category)=>
                 <CategoryItem key={category.id} category={category}></CategoryItem>
              )}
