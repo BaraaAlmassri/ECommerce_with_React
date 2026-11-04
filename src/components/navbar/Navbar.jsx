@@ -18,6 +18,7 @@ export default function Navbar() {
 
         <Box sx={{flexGrow:1}}>
           <Button color='inherit' component={Link} to ='/'> Home </Button>
+          <Button color='inherit' component={Link} to ='/Cart'> MyCart </Button>
 
           {token ? <>
           <Button color='inherit'  onClick={logout}> Logout</Button>

@@ -7,7 +7,7 @@ import authAxiosInstance from '../api/authAxiosInstance'
 export default function useAddToCart() {
    
  const addToCart = async(productId)=>{
-    const response = await authAxiosInstance(`/Carts` , {ProductId: productId , Count :1})
+    const response = await authAxiosInstance.post(`/Carts` , {ProductId: productId , Count :1})
   
       return response.data;
  }
