@@ -1,16 +1,23 @@
 import React from 'react'
 import UseProductDetails from '../../hooks/UseProductDetails'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Alert, Box, Button, Card, CardContent, CardMedia, Chip, CircularProgress, Divider, Rating, Typography } from '@mui/material';
 import ReviewItem from './ReviewItem';
+import useAddToCart from '../../hooks/useAddToCart';
+import { useAuthStore } from '../../store/useAuthStore';
 
 export default function ProductsDetails() {
+
+
+ const token = useAuthStore((state) => state.token)
+
+ const navigate = useNavigate()
 
     const { id } = useParams();
     console.log(id);
 
 
-
+   const {mutate : addToCart , isPending : addToCartPending} = useAddToCart();
     const { data, isPending, isError } = UseProductDetails(id)
     if (isPending) return <CircularProgress></CircularProgress>
     if (isError) return <Alert severity='error'>Failed to load ProductDetails</Alert>
@@ -18,6 +25,24 @@ export default function ProductsDetails() {
     console.log(data);
 
     const inStock = data.quantity > 0;
+
+
+    const handleAddToCart =  ()=>{
+                if(!token){
+                    navigate("/login")
+                    return;
+                }
+
+                addToCart(data.id , {
+                    onSuccess:()=>{
+                        console.log("added");
+                    }, 
+                    onError:()=>{
+                        console.log(error);
+                        
+                    }
+                })
+    }
 
 
     return (
@@ -50,7 +75,7 @@ export default function ProductsDetails() {
 
                 </Chip>
                 <Typography>{data.description}</Typography>
-                <Button variant='contained' sx={{mt:2}} disabled={!inStock}>Add to Cart</Button>
+                <Button variant='contained' sx={{mt:2}} disabled={!inStock || addToCartPending} onClick={handleAddToCart}>Add to Cart</Button>
             </Box>
 
 
