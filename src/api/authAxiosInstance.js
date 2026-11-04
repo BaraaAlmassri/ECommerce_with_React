@@ -2,7 +2,7 @@ import axios from "axios";
 import { useAuthStore } from "../store/useAuthStore";
 
 const authAxiosInstance = axios.create({
-    baseURL:"https://knowledgeshop.runasp.net/api" , 
+    baseURL:import.meta.env.VITE_BASEURL , 
     headers: {
            "Accept-Language" :"en"
     }
@@ -15,12 +15,12 @@ const authAxiosInstance = axios.create({
 
 
 authAxiosInstance.interceptors.request.use((config)=>{
-const token = useAuthStore((state) => state.token)
+const token = useAuthStore.getState().token
    if(token){
     config.headers.Authorization = `Bearer ${token}`
    }
 
-
+   return config;
 })
 
 

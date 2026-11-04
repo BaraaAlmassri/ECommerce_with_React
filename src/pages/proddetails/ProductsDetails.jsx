@@ -48,7 +48,7 @@ export default function ProductsDetails() {
                     transition: Slide,
                 });
             },
-            onError: () => {
+            onError: (error) => {
                 console.log(error);
 
             }
