@@ -6,8 +6,12 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import { loginSchema } from '../../validation/authSchema'
+import { useAuthStore } from '../../store/useAuthStore'
 
 export default function Login() {
+
+ const login = useAuthStore((state) => state.login)
+
         const [serverError , setServerError] = useState(null);
     const [success , setSuccess] = useState(false);
     const navigate = useNavigate();
@@ -22,9 +26,10 @@ export default function Login() {
             try {
                 const response = await axios.post("https://knowledgeshop.runasp.net/api/auth/Account/Login",values)
                 setSuccess(true);
+                 login(response.data.accessToken)
                 navigate('/');
                 console.log(response)
-                localStorage.setItem('token', response.data.accessToken)
+               
             }catch(err){
                 console.log(err.response);
                 setServerError("Login Failed");
