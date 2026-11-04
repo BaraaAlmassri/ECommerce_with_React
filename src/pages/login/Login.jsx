@@ -22,7 +22,9 @@ export default function Login() {
             try {
                 const response = await axios.post("https://knowledgeshop.runasp.net/api/auth/Account/Login",values)
                 setSuccess(true);
-                navigate('/');
+                // navigate('/');
+                console.log(response)
+                localStorage.setItem('token', response.data.accessToken)
             }catch(err){
                 console.log(err.response);
                 setServerError("Login Failed");
