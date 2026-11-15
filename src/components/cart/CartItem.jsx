@@ -5,6 +5,7 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import useRemoveItemFCart from '../../hooks/useRemoveItemFCart';
 import { toast } from 'react-toastify';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function CartItem({item}) {
 
@@ -54,6 +55,10 @@ export default function CartItem({item}) {
 </Box>
 
     <Typography>Total: ${item.totalPrice}</Typography>
+
+    <IconButton>
+      <DeleteIcon onClick={handleRemove}></DeleteIcon>
+    </IconButton>
   </Paper>
   )
 }

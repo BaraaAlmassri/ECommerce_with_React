@@ -6,6 +6,7 @@ export default function useRemoveItemFCart() {
     const queryClient = useQueryClient();
     const removeItemCart = async (productId)=>{
             const response = await authAxiosInstance.delete(`Carts/${productId}`)
+            return response.data
     }
   return useMutation (
     {
