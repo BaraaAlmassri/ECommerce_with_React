@@ -3,10 +3,29 @@ import React from 'react'
 import useUpdateCartItem from '../../hooks/useUpdateCartItem'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import useRemoveItemFCart from '../../hooks/useRemoveItemFCart';
+import { toast } from 'react-toastify';
 
 export default function CartItem({item}) {
 
   const {mutate  : updateCartItem , isPending} = useUpdateCartItem();
+
+  const {mutate : removeItemCart , isPending : isRemove} = useRemoveItemFCart(); 
+
+  const handleRemove = ()=>{
+    removeItemCart(item.productId) , {
+      onSuccess:()=>{
+        toast.success('item removed from Cart')
+      }, 
+      
+      onError :()=>{
+        toast.error('Failed to remove item from Cart')
+      }
+      
+    } ;
+     
+    
+  }
 
   const handleIncrease = ()=> {
     updateCartItem({productId : item.productId , count : item.count +1 });
