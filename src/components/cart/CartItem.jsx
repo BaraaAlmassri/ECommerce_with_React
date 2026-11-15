@@ -1,7 +1,19 @@
-import { Box, Paper, Typography } from '@mui/material'
+import { Box, IconButton, Paper, Typography } from '@mui/material'
 import React from 'react'
+import useUpdateCartItem from '../../hooks/useUpdateCartItem'
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 
 export default function CartItem({item}) {
+
+  const {mutate  : updateCartItem , isPending} = useUpdateCartItem();
+
+  const handleIncrease = ()=> {
+    updateCartItem({productId : item.productId , count : item.count +1 });
+  }
+  const handleDecrease = ()=> {
+    updateCartItem({productId : item.productId , count : item.count -1 });
+  }
   return (
   <Paper sx={{p:2 , mb:3 ,display:'flex', justifyContent:'space-between' , alignItems:'center'}}>
     <Box >
@@ -9,7 +21,19 @@ export default function CartItem({item}) {
         <Typography>${item.price}</Typography>
     </Box>
 
-    <Typography>Quantity: {item.count}</Typography>
+    <Box sx={{display : 'flex' , alignItems:'center' , border:1 , borderColor :'grey.400' , borderRadius : 1  , p:1}}>
+
+        <IconButton onClick={handleDecrease} disabled={isPending || item.count == 1}>
+               <RemoveIcon fontSize = "small"></RemoveIcon>
+        </IconButton>
+    
+
+    <Typography>{item.count}</Typography>
+ <IconButton onClick={handleIncrease} disabled={isPending}>
+               <AddIcon fontSize = "small" ></AddIcon>
+        </IconButton>
+</Box>
+
     <Typography>Total: ${item.totalPrice}</Typography>
   </Paper>
   )
