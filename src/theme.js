@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/material";
+import { createTheme, Paper } from "@mui/material";
 
 const lightPallete = {
   mode : 'light',
@@ -13,12 +13,13 @@ const lightPallete = {
   }
 }
 const darkPallete = {
-  mode : 'light',
+  mode : 'dark',
   primary : {
       main : "#7C3AED",
   },
   background : {
-    default : '#171010'
+    default : '#171010',
+    paper:"#1e1e1e"
   },
   text : {
     primary : "#f7f7f7"
@@ -27,7 +28,7 @@ const darkPallete = {
 
 export const getTheme = (mode)=>{
   return createTheme ({
-    palette:mode === 'light' ? darkPallete : lightPallete
+    palette:mode === 'light' ? lightPallete : darkPallete,
   })
 }
 
